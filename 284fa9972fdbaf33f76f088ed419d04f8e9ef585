@@ -1,0 +1,9 @@
+[ver:1,total:3600]
+src/main/java/ee/taltech/gtm/listener/CustomProjectTaskListener.java:1459,1600516800:1459,m
+src/main/java/ee/taltech/gtm/CustomProjectTask.java:1376,1600513200:360,1600516800:1016,d
+src/main/resources/META-INF/plugin.xml:481,1600513200:60,1600516800:361,1600520400:60,m
+src/main/java/ee/taltech/gtm/listener/CustomTestStatusListener.java:120,1600516800:120,m
+src/main/java/ee/taltech/gtm/GtmWrapper.java:84,1600516800:84,m
+src/main/java/ee/taltech/gtm/CustomBuildProcessListener.java:60,1600516800:60,d
+src/main/java/ee/taltech/gtm/listener/CustomDocumentListener.java:10,1600516800:10,m
+src/main/java/ee/taltech/gtm/listener/CustomEditorMouseListener.java:10,1600516800:10,m
