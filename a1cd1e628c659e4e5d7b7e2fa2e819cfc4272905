@@ -1,0 +1,4 @@
+[ver:1,total:6300]
+src/main/java/ee/taltech/gtm/GtmWrapper.java:5188,1600711200:1615,1600714800:828,1600754400:2220,1600758000:525,m
+src/main/java/ee/taltech/gtm/listener/CustomProjectTaskListener.java:820,1600520400:180,1600711200:505,1600758000:135,m
+src/main/java/ee/taltech/gtm/AppEventType.java:292,1600711200:280,1600714800:12,m
