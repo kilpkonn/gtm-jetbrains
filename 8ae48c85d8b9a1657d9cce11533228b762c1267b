@@ -1,0 +1,8 @@
+[ver:1,total:7860]
+src/main/java/ee/taltech/gtm/widget/GtmWidget.kt:2699,1601056800:486,1601060400:956,1601139600:1257,d
+src/main/java/ee/taltech/gtm/listener/CustomEditorMouseListener.kt:1715,1601056800:1556,1601060400:159,r
+src/main/java/ee/taltech/gtm/widget/GtmStatusWidget.kt:1125,1601143200:1125,m
+src/main/java/ee/taltech/gtm/widget/GtmWidgetPresentation.kt:1082,1601139600:1025,1601143200:57,m
+src/main/java/ee/taltech/gtm/widget/WidgetFactory.kt:900,1601056800:298,1601060400:424,1601139600:178,d
+src/main/java/ee/taltech/gtm/GtmWrapper.kt:198,1601143200:198,m
+src/main/resources/META-INF/plugin.xml:141,1601060400:141,m
