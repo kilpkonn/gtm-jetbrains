@@ -3,7 +3,6 @@ package ee.taltech.gtm
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.vfs.VirtualFile
 import ee.taltech.gtm.widget.GTMStatusWidget
-import org.apache.commons.lang.ArrayUtils
 import java.io.BufferedReader
 import java.io.File
 import java.io.IOException
@@ -18,7 +17,10 @@ class GtmWrapper {
         private const val RECORD_MIN_THRESHOLD = 10000L // 10 seconds
         private const val RECORD_COMMAND = "record"
         private const val VERIFY_COMMAND = "verify"
+        private const val STATUS_COMMAND = "status"
         private const val STATUS_OPTION = "--status"
+        private const val TOTAL_ONLY_OPTION = "--total-only"
+        private const val ALL_OPTION = "--all"
         private var gtmExePath: String? = null
         private var gtmExeFound = false
         private var lastRecordPath: String? = null
@@ -68,6 +70,10 @@ class GtmWrapper {
             return gtmExeFound
         }
 
+        init {
+            initGtmExePath()
+        }
+
         @Synchronized
         private fun submitRecord(r: Runnable) {
             if (recordTask != null && !recordTask!!.isDone) {
@@ -112,20 +118,28 @@ class GtmWrapper {
             lastRecordPath = java.lang.String.join("-", *args)
             lastRecordTime = currentTime
             val process = ProcessBuilder(gtmExePath, RECORD_COMMAND, STATUS_OPTION, *args).start()
-            val reader = BufferedReader(InputStreamReader(process.inputStream))
-            val builder = StringBuilder()
-            var line: String?
-            while (null != reader.readLine().also { line = it }) {
-                builder.append(line)
-            }
-            val status = builder.toString()
+            val status = readOutput(process)
             GTMStatusWidget.instance.setTimeSpent(status)
         } catch (e: IOException) {
             e.printStackTrace()
         }
     }
 
-    init {
-        initGtmExePath()
+    fun checkHours() {
+        if (gtmExeFound) {
+            val process = ProcessBuilder(gtmExePath, STATUS_COMMAND, TOTAL_ONLY_OPTION).start()
+            val status = readOutput(process)
+            GTMStatusWidget.instance.setTimeSpent(status)
+        }
+    }
+
+    private fun readOutput(process: Process): String {
+        val reader = BufferedReader(InputStreamReader(process.inputStream))
+        val builder = StringBuilder()
+        var line: String?
+        while (null != reader.readLine().also { line = it }) {
+            builder.append(line)
+        }
+        return builder.toString()
     }
 }
