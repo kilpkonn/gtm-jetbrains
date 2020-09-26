@@ -1,0 +1,8 @@
+[ver:1,total:1920]
+src/main/java/ee/taltech/gtm/GtmWrapper.kt:781,1601143200:781,m
+src/main/resources/META-INF/plugin.xml:495,1601143200:495,m
+src/main/java/ee/taltech/gtm/listener/CustomVisibleAreaListener.kt:315,1601143200:315,m
+src/main/java/ee/taltech/gtm/widget/GtmWidgetPresentation.kt:204,1601143200:204,m
+src/main/java/ee/taltech/gtm/widget/GtmWidgetFactory.kt:80,1601143200:80,m
+src/main/java/ee/taltech/gtm/listener/CustomDocumentListener.kt:30,1601143200:30,m
+build.gradle.kts:15,1601143200:15,r
