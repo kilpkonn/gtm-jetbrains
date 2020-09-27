@@ -21,7 +21,7 @@ class GtmWidgetFactory : StatusBarWidgetFactory {
     }
 
     override fun createWidget(project: Project): StatusBarWidget {
-        GtmWrapper.instance.checkHours()
+        GtmWrapper.instance.checkHours(project)
         return GTMStatusWidget.instance
     }
 

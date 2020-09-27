@@ -21,6 +21,8 @@ class GtmWrapper {
         private const val STATUS_OPTION = "--status"
         private const val TOTAL_ONLY_OPTION = "--total-only"
         private const val ALL_OPTION = "--all"
+        private const val CWD_OPTION = "--cwd"
+
         private var gtmExePath: String? = null
         private var gtmExeFound = false
         private var lastRecordPath: String? = null
@@ -100,7 +102,7 @@ class GtmWrapper {
     }
 
     protected fun runRecord(type: AppEventType, eventName: String?, project: Project) {
-        runRecord(project, "-cwd", project.basePath!!, type.command, eventName!!)
+        runRecord(project, CWD_OPTION, project.basePath!!, type.command, eventName!!)
     }
 
     protected fun runRecord(project: Project?, vararg args: String) {
@@ -125,9 +127,14 @@ class GtmWrapper {
         }
     }
 
-    fun checkHours() {
+    fun checkHours(project: Project) {
         if (gtmExeFound) {
-            val process = ProcessBuilder(gtmExePath, STATUS_COMMAND, TOTAL_ONLY_OPTION).start()
+            val process = ProcessBuilder(gtmExePath,
+                    STATUS_COMMAND,
+                    CWD_OPTION,
+                    project.basePath!!,
+                    TOTAL_ONLY_OPTION
+            ).start()
             val status = readOutput(process)
             GTMStatusWidget.instance.setTimeSpent(status)
         }
