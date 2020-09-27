@@ -1,0 +1,5 @@
+[ver:1,total:1440]
+src/main/java/ee/taltech/gtm/GtmWrapper.kt:600,1601143200:180,1601200800:180,1601204400:240,m
+src/main/java/ee/taltech/gtm/widget/GtmWidgetFactory.kt:309,1601200800:309,m
+src/main/java/ee/taltech/gtm/widget/GtmStatusWidget.kt:291,1601200800:141,1601204400:150,m
+src/main/java/ee/taltech/gtm/widget/GtmWidgetPresentation.kt:240,1601200800:150,1601204400:90,m
