@@ -11,12 +11,25 @@ class PopupFactory {
     companion object {
         private const val GROUP_ID = "gtm"
 
-        fun showInitConfirmation(project: Project, onYes: () -> Unit, onNo: () -> Unit?) {
-            val res = Messages.showDialog(project, "Do you want to initialize gtm time tracking for current repository?", "Gtm Enhanced", arrayOf("Yes", "No"), 0, Messages.getQuestionIcon())
-            if (res == 0) {
-                onYes()
-            } else {
-                onNo()
+        fun showInitConfirmation(project: Project, onYes: (local: Boolean) -> Unit, onNo: () -> Unit?) {
+            val res = Messages.showDialog(
+                project,
+                "Do you want to initialize gtm time tracking for current repository?",
+                "Gtm Enhanced",
+                arrayOf("Locally", "Globally", "No"),
+                0,
+                Messages.getQuestionIcon()
+            )
+            when (res) {
+                0 -> {
+                    onYes(true)
+                }
+                1 -> {
+                    onYes(false)
+                }
+                else -> {
+                    onNo()
+                }
             }
         }
 
