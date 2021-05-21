@@ -192,11 +192,15 @@ class GtmWrapper {
     }
 
     private fun initGtm(project: Project, local: Boolean): Boolean {
-        val arguments = ArrayList<String?>()
-        arguments.add(gtmExePath)
+        if (!gtmExeFound || project.basePath == null) {
+            PopupFactory.showErrorNotification("Gtm", "Paths could not be found, please check the log for more information")
+            return false
+        }
+        val arguments = ArrayList<String>()
+        arguments.add(gtmExePath!!)
         arguments.add(INIT_COMMAND)
         arguments.add(CWD_OPTION)
-        arguments.add(project.basePath)
+        arguments.add(project.basePath!!)
         if (local) {
             arguments.add(LOCAL_OPTION)
         }
