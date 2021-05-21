@@ -13,6 +13,7 @@ import java.nio.file.Paths
 import java.util.*
 import java.util.concurrent.Executors
 import java.util.concurrent.Future
+import kotlin.collections.ArrayList
 
 
 class GtmWrapper {
@@ -28,6 +29,7 @@ class GtmWrapper {
 
         private const val ALL_OPTION = "--all"
         private const val CWD_OPTION = "--cwd"
+        private const val LOCAL_OPTION = "--local"
         private const val INIT_FAIL = "unable to initialize"
 
         private const val GTM_MIN_VERSION = "1.0.0"
@@ -174,8 +176,8 @@ class GtmWrapper {
         ).start()
         val status = readOutput(process)
         if (status.toLowerCase().contains("not initialized") && configService?.state?.isGtmDisabled != true) {
-            PopupFactory.showInitConfirmation(project, {
-                if (initGtm(project)) {
+            PopupFactory.showInitConfirmation(project, { local ->
+                if (initGtm(project, local)) {
                     PopupFactory.showInfoNotification("Gtm", "Successfully initialized gtm time tracking")
                     if (retries > 0) checkHours(project, retries - 1)
                 }
@@ -189,8 +191,20 @@ class GtmWrapper {
 
     }
 
-    private fun initGtm(project: Project): Boolean {
-        val process = ProcessBuilder(gtmExePath, INIT_COMMAND, CWD_OPTION, project.basePath).start();
+    private fun initGtm(project: Project, local: Boolean): Boolean {
+        if (!gtmExeFound || project.basePath == null) {
+            PopupFactory.showErrorNotification("Gtm", "Paths could not be found, please check the log for more information")
+            return false
+        }
+        val arguments = ArrayList<String>()
+        arguments.add(gtmExePath!!)
+        arguments.add(INIT_COMMAND)
+        arguments.add(CWD_OPTION)
+        arguments.add(project.basePath!!)
+        if (local) {
+            arguments.add(LOCAL_OPTION)
+        }
+        val process = ProcessBuilder(arguments).start()
         val status = readOutput(process)
         val success = !status.toLowerCase().contains(INIT_FAIL)
         if (!success) {
