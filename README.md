@@ -6,8 +6,7 @@
 **Core application can be found at: https://github.com/DEVELOPEST/gtm-core**
 
 # Installation
-**Make sure you have gtm-enhanced installed on your system!**
-### Add alpha channel repository to your plugins
-Open settings -> plugins
-Search for `gtm enhanced`  
-Install 
+**Make sure you have gtm-core installed on your system!**  
+You can install it from Jetbrains plugins repository, just like any other plugin!  
+Just search for `gtm-enhanced`, and install.
+
